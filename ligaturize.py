@@ -286,6 +286,11 @@ def ligaturize_font(input_font_file, output_dir, ligature_font_file,
     else:
         output_font_type = '.ttf'
 
+    # Remove 'fi' and 'fl' glyphs
+    print ('Removing fi and fl ligatures...')
+    font.removeGlyph(0xFB01)
+    font.removeGlyph(0xFB02)
+
     # Generate font & move to output directory
     output_font_file = path.join(output_dir, font.fontname + output_font_type)
     print("    ...saving to '%s' (%s)" % (output_font_file, font.fullname))
